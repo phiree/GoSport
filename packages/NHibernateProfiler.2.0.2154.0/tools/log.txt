@@ -1,0 +1,12 @@
+﻿2013-04-23 18:55:06,457 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Profiler initialized. Build: 2154
+2013-04-23 18:55:12,238 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Attempt to start HTTP listener
+2013-04-23 18:55:12,239 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - HTTP listener started successfully
+2013-04-23 18:55:30,338 [7] WARN  Rhino.Licensing.AbstractLicenseValidator [(null)] - License expiration date is 10/07/2011 01:52:27
+2013-04-23 19:00:30,349 [8] ERROR Rhino.Licensing.AbstractLicenseValidator [(null)] - The license have expired and can no longer be used
+2013-04-23 19:00:30,351 [8] INFO  HibernatingRhinos.Profiler.Client.Services.LicensingService [(null)] - Got invalidation notification TimeExpired
+2013-04-23 19:05:30,707 [11] ERROR Rhino.Licensing.AbstractLicenseValidator [(null)] - The license have expired and can no longer be used
+2013-04-23 19:05:30,707 [11] INFO  HibernatingRhinos.Profiler.Client.Services.LicensingService [(null)] - Got invalidation notification TimeExpired
+2013-04-23 19:10:31,051 [12] ERROR Rhino.Licensing.AbstractLicenseValidator [(null)] - The license have expired and can no longer be used
+2013-04-23 19:10:31,051 [12] INFO  HibernatingRhinos.Profiler.Client.Services.LicensingService [(null)] - Got invalidation notification TimeExpired
+2013-04-23 19:15:31,438 [11] ERROR Rhino.Licensing.AbstractLicenseValidator [(null)] - The license have expired and can no longer be used
+2013-04-23 19:15:31,438 [11] INFO  HibernatingRhinos.Profiler.Client.Services.LicensingService [(null)] - Got invalidation notification TimeExpired
