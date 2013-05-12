@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <!--ErrorsInCreateActivity-->
+  <resource name="ActivityTypeError">活動類型有誤</resource>
+  <resource name="ActivityBeginTimeFormatError">活动开始时间格式有误</resource>
+  <resource name="ActivityEndTimeFormatError">活动结束时间格式有误</resource>
+  <resource name="ActivityNameEmptyError">活动名称不能为空</resource>
+ 
+</root>

@@ -1,0 +1,37 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="my.master.cs" Inherits="My_my" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title></title>
+    <!-- Framework CSS -->
+    <link rel="stylesheet" href="/Content/blueprint/screen.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/Content/blueprint/print.css" type="text/css" media="print" />
+    <!--[if lt IE 8]><link rel="stylesheet" href="/Content/blueprint/ie.css" type="text/css" media="screen, projection"/><![endif]-->
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+           <div class="container">
+                <div class="span-4 colborder" id="menu">
+                <ul>
+                <li><a href="/my/ground/">我创建的场地</a></li>
+                </ul>
+                </div>
+                <div class="span-18 last" id="main">
+                <div id="pageTitle">
+                <asp:ContentPlaceHolder ID="pageTitle" runat="server"></asp:ContentPlaceHolder>
+                </div>
+                <div id="content">
+                     <asp:ContentPlaceHolder ID="content" runat="server">
+          </asp:ContentPlaceHolder>
+                </div>
+                </div>
+            </div>
+      
+    </div>
+    </form>
+</body>
+</html>

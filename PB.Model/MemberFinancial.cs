@@ -33,12 +33,12 @@ namespace PB.Model
            FinancialDetalis.Add(detail);
            switch (detail.OperationType)
            {
-               case Enums.enumFinancialOperation.PrivateAdd: 
+               case Enums.enumFinancialOperation.PrivateRecharge: 
                    //本人賬戶的私人餘額 和 收款者的公共 餘額 均增加
                   this.PrivateBanlance += detail.Amount;
                    detail.ToWhom.PublicBanlance += detail.Amount;
                    break;
-               case Enums.enumFinancialOperation.PrivateMinus: 
+               case Enums.enumFinancialOperation.PrivatePay: 
                    //私人餘額減少
                   this.PrivateBanlance -= detail.Amount;
                    break;

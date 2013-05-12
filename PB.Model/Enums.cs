@@ -24,8 +24,8 @@ namespace PB.Model.Enums
    }
    public enum enumFinancialOperation
    { 
-       PrivateAdd,//成員交款給組織者
-       PrivateMinus,//扣除成員活動費用
+       PrivateRecharge,//成員交款給組織者
+       PrivatePay,//扣除成員活動費用
        //與 PrivateAdd同時發生 PublicCharge,//收取成員現金
        PublicPay,//支付場地費用
       //與 transfer同時發生 PublicReceive,//接收其他組織者的公共款項  

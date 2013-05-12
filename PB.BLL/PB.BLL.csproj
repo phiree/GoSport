@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLLActivity.cs" />
     <Compile Include="BLLBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -56,6 +57,10 @@
     <ProjectReference Include="..\PB.DAL\PB.DAL.csproj">
       <Project>{BD240922-77C0-4A77-8D6A-8118C09FAA54}</Project>
       <Name>PB.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PB.Model\PB.Model.csproj">
+      <Project>{5F3A8D88-E9E2-4F49-8386-D6227875EB3A}</Project>
+      <Name>PB.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

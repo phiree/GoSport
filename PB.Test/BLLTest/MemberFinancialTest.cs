@@ -9,11 +9,13 @@ using FizzWare.NBuilder;
 using NUnit.Framework;
 namespace PB.Test.DomainTest
 {
-    public class DomainTest
+    [TestFixture]
+    public class MemberFinancialTest
     {
         /// <summary>
         /// 用戶參與一次活動,計算每個用戶的費用
         /// </summary>
+        [Test]
         public void UserJoinActivityTest()
         {
             IList<GOMemberShip> members = FizzWare.NBuilder.Builder<GOMemberShip>.CreateListOfSize(10)
@@ -21,7 +23,7 @@ namespace PB.Test.DomainTest
             Activity act=Builder<Activity>.CreateNew()
                 .With(x=>x.TotalCost=100)
                 .With(x=>x.ServiceCharge=1)
-                .With(x=>x.ServiceChargeForEach=true)
+                .With(x=>x.IsServiceChargeForEach=true)
                 .With(x=>x.ActivityState= Model.Enums.enumActivityState.Published)
                 .Build()
                 ;
@@ -46,8 +48,9 @@ namespace PB.Test.DomainTest
         }
 
         /// <summary>
-        /// 用戶交錢給組織者
+        /// 各種財務活動
         /// </summary>
+         [Test]
         public void UserPayToOrganizer()
         {
              GOMemberShip memberFrom = Builder<GOMemberShip>.CreateNew()
@@ -59,17 +62,35 @@ namespace PB.Test.DomainTest
                .With(x => x.PublicBanlance = 23)
                .Build();
 
-            MemberFinancialDetail detail = Builder<MemberFinancialDetail>.CreateNew()
+             //用戶交款
+            MemberFinancialDetail detailPay = Builder<MemberFinancialDetail>.CreateNew()
                 .With(x => x.Amount = 10)
                 .With(x => x.ToWhom = memberTo)
-             
-                .With(x=>x.OperationType= Model.Enums.enumFinancialOperation.PrivateAdd)
+                .With(x=>x.OperationType= Model.Enums.enumFinancialOperation.PrivateRecharge)
                 .Build();
-            memberFrom.AddDetail(detail);
+            memberFrom.AddDetail(detailPay);
             Assert.AreEqual(22,memberFrom.PrivateBanlance);
             Assert.AreEqual(13, memberFrom.PublicBanlance);
             Assert.AreEqual(22, memberTo.PrivateBanlance);
             Assert.AreEqual(33, memberTo.PublicBanlance);
+             //扣除用戶活動費用
+            MemberFinancialDetail detailPrivateCost = Builder<MemberFinancialDetail>.CreateNew()
+              .With(x => x.Amount = 1.5m)
+              .With(x => x.OperationType = Model.Enums.enumFinancialOperation.PrivatePay)
+              .Build();
+            memberFrom.AddDetail(detailPrivateCost);
+            Assert.AreEqual(20.5m, memberFrom.PrivateBanlance);
+            Assert.AreEqual(13, memberFrom.PublicBanlance);
+
+             //用戶支付場地費用
+            MemberFinancialDetail detailPublicPay = Builder<MemberFinancialDetail>.CreateNew()
+              .With(x => x.Amount = 25)
+              .With(x => x.OperationType = Model.Enums.enumFinancialOperation.PublicPay)
+              .Build();
+            memberTo.AddDetail(detailPublicPay);
+            Assert.AreEqual(22, memberTo.PrivateBanlance);
+            Assert.AreEqual(8, memberTo.PublicBanlance);
+
         }
     }
 }

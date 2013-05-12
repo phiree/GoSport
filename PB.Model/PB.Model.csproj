@@ -48,7 +48,7 @@
   <ItemGroup>
     <Compile Include="Activity.cs" />
     <Compile Include="ActivityMember.cs" />
-    <Compile Include="ActivityType.cs" />
+    <Compile Include="Arena.cs" />
     <Compile Include="BaseClass.cs" />
     <Compile Include="BaseGround.cs" />
     <Compile Include="Enums.cs" />
@@ -60,6 +60,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PB.Library\PB.Library.csproj">
+      <Project>{C58DB4EE-C65B-4582-9526-6CF3AE9A5AE4}</Project>
+      <Name>PB.Library</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

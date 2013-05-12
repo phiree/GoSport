@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using PB.Model.Enums;
+using PB.Library;
 namespace PB.Model
 {
     /// <summary>
@@ -10,6 +11,63 @@ namespace PB.Model
     /// </summary>
     public class Activity
     {
+        public Activity()
+        {
+            Participants = new List<ActivityMember>();
+            CreateTime = DateTime.Now;
+            ActivityState = enumActivityState.NotPublished;
+        }
+        public Activity(string strActivityType
+            ,bool allowNegative
+            ,string strDateTime, string strEndTime
+            ,string description
+            ,BaseGround ground
+            ,GOMemberShip initiator
+            ,string name
+            ,int serviceCharge
+            ,bool isServiceChargeForEach
+            ,decimal totalCost
+            ,out string errMsg)
+            : this()
+        {
+            errMsg = string.Empty;
+            Activity activity = new Activity();
+            enumActivityType activityType;
+            if (!Enum.TryParse<PB.Model.Enums.enumActivityType>(strActivityType, out activityType))
+            {
+                errMsg = WebResourceManager.GetString("ActivityTypeError");
+                return;
+            }
+            DateTime beginTime;
+            if(!DateTime.TryParse(strDateTime,out beginTime))
+            {
+                errMsg = WebResourceManager.GetString("ActivityBeginTimeFormatError");
+                return;
+            }
+             DateTime endTime;
+            if(!DateTime.TryParse(strEndTime,out endTime))
+            {
+                errMsg = WebResourceManager.GetString("ActivityEndTimeFormatError");
+                return;
+            }
+            if (string.IsNullOrEmpty(name))
+            {
+                errMsg = WebResourceManager.GetString("活动名称不能为空");
+                return;
+            }
+
+            activity.AllowNegative = allowNegative;
+            activity.BeginTime = beginTime;
+            activity.EndTime = endTime;
+            activity.Description = description;
+            activity.Ground = ground;
+            activity.Initiator = initiator;
+            activity.Name = name;
+            activity.ServiceCharge = serviceCharge;
+            activity.IsServiceChargeForEach = isServiceChargeForEach;
+            activity.TotalCost = totalCost;
+            
+        }
         public virtual Guid Id { get; set; }
         public virtual string Name { get; set; }
         /// <summary>
@@ -30,7 +88,7 @@ namespace PB.Model
         /// <summary>
         /// 活動詳情介紹
         /// </summary>
-        public virtual string Details { get; set; }
+        public virtual string Description { get; set; }
         //圖片:每種類型的默認圖標
         public virtual DateTime BeginTime { get; set; }
         public virtual DateTime EndTime { get; set; }
@@ -43,12 +101,7 @@ namespace PB.Model
         /// </summary>
         public virtual GOMemberShip Initiator { get; set; }
         public virtual IList<ActivityMember> Participants { get; set; }
-        public Activity()
-        {
-            Participants = new List<ActivityMember>();
-            CreateTime = DateTime.Now;
-            ActivityState = enumActivityState.NotPublished;
-        }
+       
         /// <summary>
         /// 是否允許資金不足的成員參加
         /// </summary>
@@ -58,7 +111,7 @@ namespace PB.Model
             if (Participants.Count == 0)
                 return 0;
             decimal TotalServiceCharge = 0;
-            if (ServiceChargeForEach)
+            if (IsServiceChargeForEach)
             {
                 TotalServiceCharge = Participants.Count * ServiceCharge;
             }
@@ -76,7 +129,7 @@ namespace PB.Model
         /// <summary>
         /// 服務費是按參與者人數計算
         /// </summary>
-        public virtual bool ServiceChargeForEach { get; set; }
+        public virtual bool IsServiceChargeForEach { get; set; }
         
         
 
